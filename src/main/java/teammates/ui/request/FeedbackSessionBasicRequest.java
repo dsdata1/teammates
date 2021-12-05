@@ -136,8 +136,8 @@ public class FeedbackSessionBasicRequest extends BasicRequest {
     public void validate() throws InvalidHttpRequestBodyException {
         assertTrue(instructions != null, "Instructions cannot be null");
         
-        assertTrue(!Objects.isNull(submissionStartTimestamp), "Start Time Stamp cannot be null");
-        assertTrue(!Objects.isNull(submissionEndTimestamp), "End Time Stamp cannot be null");   
+        assertTrue(submissionStartTimestamp > 0L, "Start timestamp should be more than zero and less than 30");
+        assertTrue(submissionEndTimestamp > 0L, "End timestamp should be more than zero and less than 30");
 
         assertTrue(!Objects.isNull(submissionStartTimestamp), "Start Time Stamp cannot be null");
         assertTrue(!Objects.isNull(submissionEndTimestamp), "End Time Stamp cannot be null");
