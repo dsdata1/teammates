@@ -9,6 +9,8 @@ import teammates.common.util.Const;
 import teammates.ui.output.ResponseVisibleSetting;
 import teammates.ui.output.SessionVisibleSetting;
 
+import java.util.Objects;
+
 /**
  * The basic request body format for creating/saving of feedback session.
  */
@@ -124,13 +126,23 @@ public class FeedbackSessionBasicRequest extends BasicRequest {
         isPublishedEmailEnabled = publishedEmailEnabled;
     }
 
+
+
+    /**
+    * Display error message based on user selection or input
+    * @throws InvalidHttpRequestBodyException submissionStartTimestamp > 0 or submissionEndTimestamp > 0 or submissionStartTimestamp == null
+    */
     @Override
     public void validate() throws InvalidHttpRequestBodyException {
         assertTrue(instructions != null, "Instructions cannot be null");
-        assertTrue(submissionStartTimestamp > 0L, "Start timestamp should be more than zero and less than thirty one, please enter valid date");
-        assertTrue(submissionEndTimestamp > 0L, "End timestamp should be more than zero and less than thirty one, please enter valid date");
+        
+        assertTrue(!Objects.isNull(submissionStartTimestamp), "Start Time Stamp cannot be null");
+        assertTrue(!Objects.isNull(submissionEndTimestamp), "End Time Stamp cannot be null");   
 
+        assertTrue(!Objects.isNull(submissionStartTimestamp), "Start Time Stamp cannot be null");
+        assertTrue(!Objects.isNull(submissionEndTimestamp), "End Time Stamp cannot be null");
 
+        
 
         assertTrue(sessionVisibleSetting != null, "sessionVisibleSetting cannot be null");
         if (sessionVisibleSetting == SessionVisibleSetting.CUSTOM) {
