@@ -129,18 +129,16 @@ public class FeedbackSessionBasicRequest extends BasicRequest {
 
     /**
     * Display error message based on user selection or input
-    * @throws InvalidHttpRequestBodyException submissionStartTimestamp > 0 or submissionEndTimestamp > 0 or submissionStartTimestamp == null
+    * @throws InvalidHttpRequestBodyException submissionStartTimestamp or submissionEndTimestamp > 0 or submissionStartTimestamp or submissionEndTimestamp == null
     */
     @Override
     public void validate() throws InvalidHttpRequestBodyException {
         assertTrue(instructions != null, "Instructions cannot be null");
 
         
-
+	// CS427 Issue link: https://github.com/TEAMMATES/teammates/issues/11236
         assertTrue((Long) submissionStartTimestamp != null, "Start Time Stamp cannot be null");
         assertTrue((Long) submissionEndTimestamp != null, "End Time Stamp cannot be null");
-
-        
         assertTrue(submissionStartTimestamp > 0L, "Start Date should be more than zero and less than thirty one, please enter valid date");
         assertTrue(submissionEndTimestamp > 0L, "End Date should be more than zero and less than thirty one, please enter valid date");
 
